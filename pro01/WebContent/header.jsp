@@ -5,7 +5,7 @@
 <c:set var="hpath" value="<%=request.getContextPath() %>" />
 <header>
 	<div class="logo_wrap">
-		<a href="/pro01"><img src="${hpath }/images/logo.png" alt="가산동 로고" /></a>
+		<a href="/pro01"><img src="${hpath }/images/logo.png" alt="발산동 로고" /></a>
 	</div>
 	<div id="tnb" style="height:100px; line-height:2rem; padding-top:1rem">
 		<c:if test="${not empty sid }">
@@ -58,7 +58,7 @@
 				<a href="" class="dp1">커뮤니티</a>
 				<ul class="sub_menu">
 					<li><a href="${hpath }/NotiList.do">공지사항</a></li>
-					<li><a href="">자료실</a></li>
+					<li><a href="${hpath }/DataList.do">자료실</a></li>
 					<li><a href="${hpath }/GetQnaList.do">묻고답하기</a></li>
 				</ul>
 			</li>

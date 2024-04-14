@@ -21,7 +21,8 @@ public class QnaDAO {
 			pstmt = con.prepareStatement(OracleDB.LATEST_QNA);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				Qna q = new Qna(rs.getInt("no"),
+				Qna q = new Qna(
+						rs.getInt("no"),
 						rs.getInt("plevel"),
 						rs.getInt("parno"),
 						rs.getString("title"),
@@ -47,7 +48,8 @@ public class QnaDAO {
 			pstmt = con.prepareStatement(SqlLang.SELECT_ALL_QNA);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				Qna q = new Qna(rs.getInt("no"),
+				Qna q = new Qna(
+						rs.getInt("no"),
 						rs.getInt("plevel"),
 						rs.getInt("parno"),
 						rs.getString("title"),

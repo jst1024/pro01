@@ -1,19 +1,20 @@
-package org.balsan.ctrl.qna;
+package org.balsan.ctrl.data;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.balsan.dao.QnaDAO;
+import org.balsan.dao.DatafileDAO;
 
-@WebServlet("/DelAnswer.do")
-public class DelAnswerCtrl extends HttpServlet {
+@WebServlet("/DelData.do")
+public class DelDataCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public DelAnswerCtrl() {
+    public DelDataCtrl() {
         super();
     }
 
@@ -22,16 +23,15 @@ public class DelAnswerCtrl extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		
 		int no = Integer.parseInt(request.getParameter("no"));
 		
-		QnaDAO dao = new QnaDAO();
-		int cnt = dao.delAnswer(no);
+		DatafileDAO dao = new DatafileDAO();
+		int cnt = dao.delData(no);
 		
-		if(cnt>=1) {
-			response.sendRedirect("/pro01/GetQnaList.do");
+		if(cnt>0) {
+			response.sendRedirect("/pro01/DataList.do");
 		} else {
-			response.sendRedirect("/pro01/GetQna.do?no="+no);
+			response.sendRedirect("/pro01/GetData2.do?no="+no);
 		}
 	}
 

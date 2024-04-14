@@ -17,9 +17,13 @@
 #page1 { background-color:#ececec; }
 #page2 { background-color:#42bcf5; }
 .page_title { font-size:36px; padding-top:2em; text-align:center; }
+
 th.item1 { width:8%; }
-th.item2 { width:60%; }
-th.item3 { width:20%; }
+th.item2 { width:20%; }
+th.item3 { width:40%; }
+th.item4 { width:10%; }
+th.item5 { width:14%; }
+td.msg { text-align:center; }
 </style>
 </head>
 <body>
@@ -28,31 +32,33 @@ th.item3 { width:20%; }
 </div>
 <div id="contents">
 	<section class="page" id="page1">
-			<div style="width:1400px; margin:0 auto;">
-				<nav aria-label="breadcrumb" style="text-align:right">
-				  <ol class="breadcrumb">
-				    <li class="breadcrumb-item"><a href="#">Home</a></li>
-				    <li class="breadcrumb-item"><a href="${path0 }/GeNoticeList.do">공지사항</a></li>
-				    <li class="breadcrumb-item active" aria-current="page">공지사항 목록</li>
-				  </ol>
-				</nav>
-				<hr>
-			</div>
 		<div style="width:1400px; margin:0 auto;">
-			<h3 class="page_title">공지사항 목록</h3>
+			<nav aria-label="breadcrumb" style="text-align:right">
+			  <ol class="breadcrumb">
+			    <li class="breadcrumb-item"><a href="#">Home</a></li>
+			    <li class="breadcrumb-item"><a href="${path0 }/GetDataList.do">자료실</a></li>
+			    <li class="breadcrumb-item active" aria-current="page">자료실 목록</li>
+			  </ol>
+			</nav>
+			<hr>
+		</div>	
+		<div style="width:1400px; margin:0 auto;">
+			<h3 class="page_title">자료실 목록</h3>
 			<div>
 				<table class="table" id="tb1">
 					<thead>
 						<tr>
 							<th class="item1">번호</th>
 							<th class="item2">제목</th>
-							<th class="item3">작성일</th>
-							<th class="item4">조회수</th>
+							<th class="item3">내용</th>
+							<th class="item4">자료</th>
+							<th class="item5">작성일</th>
+							<th class="item6">조회수</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:if test="${not empty notiList }">
-							<c:forEach var="dto" items="${notiList }">
+						<c:if test="${not empty dataList }">
+							<c:forEach var="dto" items="${dataList }">
 							<tr>
 								<td>${dto.no }</td>
 								<td>
@@ -60,16 +66,19 @@ th.item3 { width:20%; }
 									<strong>${dto.title }</strong>
 									</c:if>
 									<c:if test="${not empty sid }">
-									<a href="${path0 }/GetNotice.do?no=${dto.no }">${dto.title }</a>
+									<a href="${path0 }/GetData.do?no=${dto.no }">${dto.title }</a>
 									</c:if>
-								</td>
-								<td>${dto.resdate }</td><td>${dto.visited }</td>
+								</td>								
+								<td>${dto.content }</td>
+								<td>${dto.datafile }</td>
+								<td>${dto.resdate }</td>
+								<td>${dto.visited }</td>
 							</tr>
 							</c:forEach>
 						</c:if>
-						<c:if test="${empty notiList }">
+						<c:if test="${empty dataList }">
 							<tr>
-								<td colspan="4"><strong>공지사항이 존재하지 않습니다.</strong></td>
+								<td colspan="6" class="msg"><strong>데이터가 존재하지 않습니다.</strong></td>
 							</tr>
 						</c:if>
 					</tbody>
@@ -84,7 +93,7 @@ th.item3 { width:20%; }
 				<hr>
 				<c:if test="${sid.equals('admin') }">
 				<div class="btn-group">
-				  <a href="${path0 }/notice/noti_ins.jsp" class="btn btn-secondary">글 등록</a>
+				  <a href="${path0 }/data/data_ins.jsp" class="btn btn-secondary">글 등록</a>
 				</div>
 				</c:if>
 			</div>
